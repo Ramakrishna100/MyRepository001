@@ -1,0 +1,43 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.lang.Class;
+
+
+public class EducbaJdbcExample4 {
+
+
+public static void main(String[] args) {
+
+
+try {Class.forName("org.postgresql.Driver");}
+catch (Exception e) {e.printStackTrace();}
+
+
+try (Connection myConnection = DriverManager.getConnection(
+"jdbc:postgresql://localhost:5432/postgres", "postgres", "Ramakrishna199")) 
+{
+
+if (myConnection != null) {
+System.out.println("Successfully connected to \"postgres\" database!");
+System.out.println("And now closing connection !!!");
+myConnection.close();
+} else {
+System.out.println("Sorry!Failed to establish JDBC connection");
+}
+
+} // try - ends
+
+catch (SQLException e) {
+System.err.format("Current SQL status: %s\n%s", e.getSQLState(), e.getMessage());
+} 
+
+catch (Exception e) {
+e.printStackTrace();
+}
+
+
+} // main - ends
+
+
+} // class- ends
